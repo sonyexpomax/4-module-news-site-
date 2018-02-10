@@ -1,0 +1,168 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+{% endblock %}
+
+{% block body %}
+
+    <div class="col-12 marg-top">
+        <h4 class="list-group-item list-group-item-action flex-column align-items-start active">Поиск новостей</h4>
+        <div class="custom-search">
+            <form action="" method="get" name="custom-search">
+            <div class=" search-block">
+                <div class="input-group form-group-1">
+                    <label for="date-range" class="label-input">Диапазон дат</label>
+                    <input type="text" class="form-control label-input" name="date-range" value="{{ "now"|date_modify("-30 day")|date("Y-m-d h:i") }} - {{ "now"|date("Y-m-d h:i") }}" id="date-range" />
+                    <small id="date-range-Help" class="form-text text-muted label-input">Вы можете указать период времени для поиска</small>
+                </div>
+            </div>
+            <div class=" search-block">
+                <div class="form-group form-group-1">
+                    <label for="exampleSelect2 label-input">Список категорий</label>
+                    <select multiple name="category-list[]" class="form-control label-input" id="exampleSelect2">
+                        {% for category in all_categories %}
+                            <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class=" search-block">
+                <div class="form-group form-group-1">
+                    <label for="exampleSelect2 label-input">Список тегов</label>
+                    <select multiple name="tag-list[]" class="form-control label-input" id="exampleSelect2">
+                        {% for tag in all_tags %}
+                            <option value="{{ tag.id }}">{{ tag.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+
+
+
+                <button type="submit" class="btn btn-success width-100">Поиск</button>
+            </form>
+            </div>
+        </div>
+        <div class="col-md-12 slider-main">
+            <h4 class="list-group-item list-group-item-action flex-column align-items-start active">Последние новости</h4>
+            <div class="slider">
+                {% for last_news_item in last_news %}
+                    <div class="slide-item">
+                        <a href="{{ path('news_view', {'id': last_news_item.news_id}) }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <img class="rounded float-left img-slider"  src="{{ last_news_item.image_url }}" alt="{{ last_news_item.news_name }}" />
+                        <div class="text-slider">
+                            <small class="text-muted float-right">{{ last_news_item.createdAt|date('H:i d/m/Y') }}</small>
+                            <h5 class="mb-1">{{ last_news_item.news_name }}</h5>
+                            <p class="text-justify">{{ last_news_item.news_description }}</p>
+                        </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2 col-md-2 sidebar side-p side-right">
+                    <div class="list-group side-p-sub">
+                        <span href="#" class="list-group-item active">Топ 5 комментаторов</span>
+                        {% for commentator in commentators %}
+                            <a href="{{ path('comments_list', {'commentator_id':commentator.user_id, 'page_number':'1'}) }}" class="list-group-item">
+                                - {{ commentator.user_name }}<span class="badge  badge-info float-right" title="Количество комментариев">{{ commentator.comments_count }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+
+                        {% include 'ad/advertisement_left.html.twig'  %}
+                </div>
+
+
+
+                <div class="col-sm-8 col-sm-offset-3 col-md-8 col-md-offset-2 main">
+        <div class="row">
+            <h2 class="h2-homepage">Новостные категории</h2>
+            {% for category_name, category in categories %}
+                {% if (loop.index-1) % 2 == 0 %}
+                    </div>
+                    <div class="row">
+                {% endif %}
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <a href="{{ path('news_list',{'category_id':category[0].category_id, 'page_number':'page=1'})}}" class="list-group-item list-group-item-action flex-column align-items-start active">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1"> {{ category_name }}</h5>
+                            </div>
+                        </a>
+                        {% for news in category %}
+                        <a href="{{ path('news_view', {'id': news.news_id}) }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1 text-justify">{{ news.news_name }}</h6>
+
+                            </div>
+                             <small class="text-muted">{{ news.created_at|date('H:i d/m/Y') }}</small>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+            </div>
+
+                <div class="col-sm-2 col-md-2 sidebar side-p side-right">
+                    <div class="list-group side-p-sub">
+                        <span href="#" class="list-group-item active">Топ 3 активные темы</span>
+                        {% for topic in topics %}
+                            <a href="{{ path('news_view', {'id':topic.news_id}) }}" class="list-group-item">
+                                {{ topic.news_name }}<span class="badge badge-info float-right" title="Количество комментариев">{{ topic.comments_count }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                   {% include 'ad/advertisement_right.html.twig'  %}
+                </div>
+
+    </div>
+        </div>
+
+
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+     <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+     <script type="text/javascript">
+         $(function() {
+             $('input[name="daterange"]').daterangepicker({
+                 timePicker: true,
+                 timePickerIncrement: 30,
+                 locale: {
+                     format: 'YYYY-MM-DD h:mm'
+                 }
+             });
+         });
+     </script>
+     <script>
+         var myIndex = 0;
+         slider();
+
+         function slider() {
+             var i;
+             var sliders = document.getElementsByClassName("slide-item");
+             for (i = 0; i < sliders.length; i++) {
+                 sliders[i].style.display = "none";
+             }
+
+             myIndex++;
+             if (myIndex > sliders.length) {
+                 myIndex = 1;
+             }
+
+             sliders[myIndex-1].style.display = "block";
+             setTimeout(slider, 6000);
+         }
+     </script>
+ {% endblock %}

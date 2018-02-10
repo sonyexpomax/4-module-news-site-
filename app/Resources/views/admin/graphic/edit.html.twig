@@ -1,0 +1,18 @@
+{% extends 'baseAdmin.html.twig' %}
+{% block title %}Редактирование графики{% endblock %}
+{% block body %}
+
+    <div class="col-sm-4">
+        <h2>Редактирование фонов</h2>
+        <form action="" name="change_background">
+            <label for="background_menu" class="label-input">Цвет фона меню</label>
+            <input type="color" id="background_menu" class="input-color"  name="background_menu" value="{{ background_menu }}"/>
+
+            <label for="background_body" class="label-input">Цвет фона сайта</label>
+            <input type="color" id="background_body" class="input-color"  name="background_body" value="{{ background_body }}"/>
+
+            <button type="submit" class="btn btn-success btn-md">Сохранить</button>
+        </form>
+    </div>
+
+{% endblock %}

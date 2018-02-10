@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block title %}Вход на сайт{% endblock %}
+{% block body %}
+<div class="marg-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 login-form">
+                <h1>Вход на сайт</h1>
+
+                {% if error %}
+                    <div class="alert alert-danger">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
+
+                {{ form_start(form) }}
+                    {{ form_row(form._username) }}
+                    {{ form_row(form._password) }}
+                    <button type="submit" class="btn btn-md btn-success">Войти <span class="fa fa-lock"></span></button>
+                    &nbsp;
+                    <a href="{{ path('user_register') }}">Register</a>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'baseAdmin.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+{% endblock %}
+{%  block title %}Список категорий{% endblock %}
+{% block body %}
+            <div class="col-sm-6">
+                <div class="float-right" style="margin-bottom: 10px; margin-top: 20px;">
+                    <a href="{{ path('admin_category_new') }}" class="btn btn-md btn-primary pull-right">Добавить категорию</a>
+                </div>
+
+                <h1 class="float-left">Категории</h1>
+
+                <table class="table table-striped">
+                    <tr>
+                        <th>№</th>
+                        <th>Название</th>
+                        <th>Действие</th>
+                    </tr>
+                    {% for category in categories %}
+                        <tr>
+                            <td>{{ loop.index }}.</td>
+                            <td>{{ category.name }}</td>
+                            <td>
+                                <a href="{{ path('admin_category_edit', {'id': category.id}) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+                                <a href="{{ path('admin_category_delete', {'id': category.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+{% endblock %}
+
+

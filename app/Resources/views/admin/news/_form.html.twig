@@ -1,0 +1,12 @@
+{% form_theme newsForm 'bootstrap_4_layout.html.twig' %}
+{{ form_start(newsForm) }}
+    {{ form_row(newsForm.name) }}
+    {{ form_row(newsForm.createdAt) }}
+    {{ form_row(newsForm.description) }}
+    {{ form_row(newsForm.isAnalytic) }}
+    {{ form_row(newsForm.images) }}
+    {{ form_row(newsForm.category) }}
+    {{ form_row(newsForm.tag) }}
+<button type="submit" class="btn btn-primary" formnovalidate>Сохранить</button>
+{{ form_end(newsForm) }}
+

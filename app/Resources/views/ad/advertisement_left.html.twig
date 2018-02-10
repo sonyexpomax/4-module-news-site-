@@ -1,0 +1,15 @@
+<div class="list-group side-p-sub side-left">
+    {% for id_item in ad.getFirstBlocks() %}
+        <div class="adv">
+                <h5>{{  id_item.name }}</h5>
+                <div class="adv-price-block">
+                        <div class="adv-kupon">Купон на скидку <span>{{ random(['apple', 'orange', 'citrus','adfs','dfdfs','fsddfs','ekwgjdfs','dfs2222']) }}</span> Примените и получите скидку -10%</div>
+                        <p class="adv-price">Цена: </p>
+                        <span class="adv-price-number">{{  id_item.price|number_format(2, '.', ' ') }}</span>
+                        <p class="adv-price"> грн.</p>
+                </div>
+
+                <a href="http://{{ id_item.seller }}" class="adv-seller">{{ id_item.seller }}</a>
+        </div>
+    {% endfor %}
+</div>

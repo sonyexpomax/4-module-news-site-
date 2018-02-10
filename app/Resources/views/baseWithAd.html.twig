@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body style="background-color:{{ background.getBackgroundBody() }}">
+<header>
+
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark " style="background-color: {{ background.getBackgroundMenu() }}">
+        <a class="navbar-brand" href="{{ path('homepage') }}">Новостной сайт</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('analytics_list') }}">Аналитика</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Категории новостей</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                        {% for menu_item in menu.getMenu()%}
+                            {% if menu_item.category_parent_id is null %}
+                                 <a class="dropdown-item" href="{{ path('news_list', {'category_id': menu_item.category_id}) }}">{{ menu_item.category_name }}</a>
+                            {% else %}
+                                <div>
+                                    <a class="dropdown-item" href="{{ path('news_list', {'category_id': menu_item.category_id}) }}">{{ menu_item.category_name }}
+                                        <i class="fa fa-caret-right float-right" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="ttttt">
+                                        {% for sub_menu_item in menu_item.category_parent_id %}
+                                            <li >
+                                                <a class="dropdown-item" tabindex="-1" href="{{ path('news_list', {'category_id': sub_menu_item.category_id}) }}">{{ sub_menu_item.category_name }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                       {% endfor %}
+
+                     </div>
+                </li>
+            </ul>
+            <div class="searching">
+                <input name="search" type="text" id="search" class="search_input" placeholder="Поиск новостей по тегу"  AUTOCOMPLETE="off">
+                <div class="tips"></div>
+                <div class="search_result"></div>
+            </div>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <ul class="navbar-nav px-3">
+                    <li class="nav-item text-nowrap">
+                        <a class="nav-link" href="{{ path('homepage_admin') }}">Администрирование</a>
+                    </li>
+                </ul>
+            {% endif %}
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                    <li><a  href="{{ path('security_logout') }}" class="btn btn-outline-success my-2 my-sm-0" title="logout" id="logout"
+                                {% if is_granted('ROLE_USER') %}
+                                    data-user_name="{{  app.user.name }}"
+                                {% endif %}
+                        ><i class="fa fa-sign-out" aria-hidden="true"></i>  {{  app.user.name }}, logout?</a></li>
+                {% else %}
+                    <li><a  href="{{ path('security_login') }}" class="btn btn-outline-success my-2 my-sm-0"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+
+<main role="main" class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 col-md-2 sidebar side-p side-right">
+                {% include 'ad/advertisement_left.html.twig'  %}
+            </div>
+            <div class="col-sm-8 col-sm-offset-3 col-md-8 col-md-offset-2 main">
+                <div class="row main-center">
+                    {% for msg in app.session.flashBag.get('success') %}
+                        <div class="alert alert-success">
+                            {{ msg }}
+                        </div>
+                    {% endfor %}
+
+                    {% block body %}
+
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-2 sidebar side-p side-right">
+                {% include 'ad/advertisement_right.html.twig'  %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+</main>
+
+<footer>
+    <p>&copy; Company 2017</p>
+</footer>
+
+</body>
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script
+            src="http://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>    <script src="{{ asset('js/cookie.js') }}"></script>
+    <script src="{{ asset('js/showDeliv.js') }}"></script>
+    <script src="{{ asset('js/liveSearch.js') }}"></script>
+    <script src="{{ asset('js/alertMessageClosing.js') }}"></script>
+    <script>
+        function linksCreator(tagId, tagName) {
+            var url = '{{ path('news_list_by_tag', {'tag_id': 'tagId'}) }}';
+            url = url.replace("tagId", tagId);
+            return "<div class='search-line'><a class='search-link' href='"+url+"'>"+tagName+"</a><div>"
+        }
+    </script>
+    <script>
+        $( ".adv" ).hover(
+            function() {
+               $( this ).find( ".adv-kupon" ).fadeIn(200);
+            }
+        );
+        $( ".adv" ).mouseleave(
+            function() {
+                $( this ).find( ".adv-kupon" ).fadeOut(200);
+            }
+        );
+  </script>
+
+
+
+{% endblock %}
+
+
+</html>

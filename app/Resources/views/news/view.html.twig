@@ -1,0 +1,109 @@
+{% extends 'baseWithAd.html.twig' %}
+{%  block title %}{{ news.news_name }}{% endblock %}
+{% block body %}
+    <h2 id="js-header" data-category="{{ news.category_id }}">{{ news.news_name }}</h2>
+    <div class="row">
+        {% if news.image_url[0] is not null %}
+            {% if news.image_url|length > 1 %}
+                <div class="col-md-3">
+                    {% for image in news.image_url %}
+                        <div class="imgAbt">
+                            <img class="news-img"  src="{{ image }}" alt="{{ news.news_name }}" />
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-9">
+                    <p class="text-justify">{{ news.description }}</p>
+                    {% if news.isAnalytic and is_granted('ROLE_USER') == false %}
+                        <b>Полный текст данной новости возможен только для зарегесрированных пользователей</b>
+                    {% endif %}
+                    <p class="text-muted float-right">{{ news.createdAt |date }}</p>
+                </div>
+             {% else %}
+                <div class="col-md-4">
+                    {% for image in news.image_url %}
+                    <div class="imgAbt">
+                        <img class="news-img"  src="{{ image }}" alt="{{ news.news_name }}" />
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-8">
+                    <p class="text-justify">{{ news.description }}</p>
+                    {% if news.isAnalytic and is_granted('ROLE_USER') == false %}
+                        <b>Полный текст данной новости возможен только для зарегесрированных пользователей</b>
+                    {% endif %}
+                    <p class="text-muted float-right">{{ news.createdAt |date }}</p>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="col-md-12">
+                <p class="text-justify">{{ news.description }}</p>
+                {% if news.isAnalytic and is_granted('ROLE_USER') == false %}
+                    <b>Полный текст данной новости возможен только для зарегесрированных пользователей</b>
+                {% endif %}
+                <p class="text-muted float-right">{{ news.createdAt |date }}</p>
+            </div>
+        {% endif %}
+
+        {% if news.tags is defined %}
+            <div class="tags">
+                Теги:
+                {% for tag_id, tag_name in news.tags %}
+                    <a href="{{ path('news_list_by_tag', {'tag_id': tag_id}) }}"  class="btn btn-info btn-md tag" role="button" aria-pressed="true">{{ tag_name }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="reading">
+            <span class="fa fa-leanpub fa-2x reading-now" id="reading-now" title="Просматривают статью прямо сейчас"></span>
+            <span class="fa fa-book fa-2x total-read" id="total-read" title="Общее количество просмотров">{{ news.countRead }}</span>
+        </div>
+    </div>
+    <div class="comments-all" data-news_id="{{ news.news_id }}">
+        <h2 class="comments-title">Комментарии:<span class="comment-waiting fa fa-spin fa-spinner"></span></h2>
+        {% if is_granted('ROLE_USER') %}
+            <div class="comment-wrap message">
+                <div class="photo">
+                    <i class="fa fa-commenting-o fa-3x"></i>
+                </div>
+                <div class="comment-block">
+                    <form action="">
+                        <textarea name="" id="new-comment" cols="30" rows="3" placeholder="Add comment..." class="comment-textarea"></textarea>
+                        <button class="btn btn-success btn-sm float-right" id="comment-add">Оставить комментарий <i class="fa fa-paper-plane" id="button-icon"></i></button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+        <div class="comment-ajax"></div>
+    </div>
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+     <script src="{{ asset('js/comments.js') }}"></script>
+     <script>
+         requestComments('/news/{{ news.news_id }}/comments');
+     </script>
+     <script src="{{ asset('js/reading.js') }}"></script>
+     <script>
+         function updateTotalRead(plus) {
+             $.ajax({
+                 type: "GET",
+                 url: '/update_total_read/{{ news.news_id }}/'+plus,
+                 success: function(){
+                     $('#total-read')
+                         .removeClass('fa-spinner')
+                         .removeClass('fa-spin')
+                         .addClass('fa-book')
+                         .text(currentTotalRead);
+                 }
+             });
+         }
+
+         generateReadingNow();
+         setTimeout(
+            setInterval(generateReadingNow, 4000),
+            3000
+         );
+
+     </script>
+ {% endblock %}

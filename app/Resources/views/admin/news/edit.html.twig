@@ -1,0 +1,32 @@
+{% extends 'admin/news/formLayout.html.twig' %}
+{% block title %}Редактирование новости{% endblock %}
+{% block body %}
+                <h1>Редактирование новости</h1>
+    {{ form_start(newsForm) }}
+    {{ form_row(newsForm.name) }}
+    {{ form_row(newsForm.createdAt) }}
+    {{ form_row(newsForm.description) }}
+    {{ form_row(newsForm.isAnalytic) }}
+
+    <div class="form-group">
+        <label class="form-control-label required" for="news_form_images">Загружаемые картинки (фото)</label>
+        {% for image in images %}
+            <input type="text" id="news_form_images" name="news_form[images][]" required="required" multiple="multiple" class="form-control-file" value="{{ image.name }}">
+        {% endfor %}
+    </div>
+
+
+
+
+    {{ form_row(newsForm.category) }}
+    {{ form_row(newsForm.tag) }}
+    <button type="submit" class="btn btn-primary" formnovalidate>Сохранить</button>
+    {{ form_end(newsForm) }}
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/addFileLoader.js') }}"></script>
+{% endblock %}

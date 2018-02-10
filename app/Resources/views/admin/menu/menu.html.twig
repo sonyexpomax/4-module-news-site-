@@ -1,0 +1,28 @@
+{% extends 'baseAdmin.html.twig' %}
+{%  block title %}Редактирование меню{% endblock %}
+{% block body %}
+
+        {#<div class="float-right" style="margin-bottom: 10px; margin-top: 20px;">#}
+            {#<a href="{{ path('admin_category_new') }}" class="btn btn-md btn-primary pull-right">Добавить категорию</a>#}
+        {#</div>#}
+
+        <h1 class="float-left">Редактирование меню</h1>
+    <div class="col-sm-7">
+        <table class="table table-striped">
+            <tr class="js-main-row">
+                <th>Основоной раздел</th>
+                <th></th>
+                <th>Подраздел</th>
+            </tr>
+            <tr class="js-lower-row"></tr>
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/menuEdit.js') }}"></script>
+{% endblock %}
+

@@ -1,0 +1,58 @@
+{% extends "baseWithAd.html.twig" %}
+{%  block title %}Результат поиска по тегу "{{tag.name }}"{% endblock %}
+{% block body %}
+
+    <h2>Результат поиска по тегу "{{tag.name }}"</h2>
+    {% if  news is defined and news|length > 0 %}
+        <ul class="list-group">
+            {% for item in news %}
+                <a class="list-group-item" href="{{ path('news_view', {'id': item.news_id}) }}">
+                    <div class="bmd-list-group-col">
+                        <p class="list-group-item-heading">{{ item.news_name }}</p>
+                        <p class="list-group-item-text">Подробнее</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </ul>
+
+
+        <nav aria-label="Page navigation example" class="center-div center-block">
+            <ul class="pagination">
+
+                {% if  current_page == 1 %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1"><<</a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ path('news_list_by_tag',{'tag_id':tag_id, 'page_number':'page='~(current_page-1)})}}"><< Previous</a>
+                    </li>
+                {% endif %}
+
+
+                {% for i in range(1,  total_pages ) %}
+                    {% if  i == current_page %}
+                        <li class="page-item active active-page">
+                            <span class="page-link">{{ i }}</span>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="{{ path('news_list_by_tag',{'tag_id':tag_id, 'page_number':'page='~i})}}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if  current_page == total_pages %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Next >></a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ path('news_list_by_tag',{'tag_id':tag_id, 'page_number':'page='~(current_page+1)})}}">>></a>
+                    </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    {% else %}
+            <p>Ничего не найдено</p>
+    {% endif %}
+{% endblock %}

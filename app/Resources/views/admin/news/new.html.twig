@@ -1,0 +1,11 @@
+{% extends 'admin/news/formLayout.html.twig' %}
+{%  block title %}Новая новость{% endblock %}
+{% block body %}
+                <h1>Новая новость</h1>
+                {{ include('admin/news/_form.html.twig') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/addFileLoader.js') }}"></script>
+{% endblock %}

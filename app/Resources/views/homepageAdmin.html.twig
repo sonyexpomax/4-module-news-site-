@@ -1,0 +1,123 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+    <div class="row">
+            <h2 class="h2-homepage">Администрирование сайта</h2>
+    </div>
+    <div class="row">
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <a href="" class="list-group-item list-group-item-action flex-column align-items-start active">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Комментарии</h5>
+                        </div>
+                        </a>
+                        <a href="{{ path('admin_comment_list')}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1 text-justify">Список всех комментариев</h6>
+                            </div>
+                        </a>
+                        <a href="{{ path('admin_comment_list_not_active')}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1 text-justify">Список всех комментариев ожидающих подтверждения</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            <div class="col-md-6">
+                <div class="list-group">
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start active">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Новости</h5>
+                        </div>
+                    </a>
+                    <a href="{{ path('admin_news_list')}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 text-justify">Список всех новостей</h6>
+                        </div>
+                    </a>
+                    <a href="{{ path('admin_news_new')}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 text-justify">Добавить новость</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    </div>
+    <div class="row">
+            <div class="col-md-6">
+                <div class="list-group">
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start active">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Категории</h5>
+                    </div>
+                    </a>
+                    <a href="{{ path('admin_category_list')}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 text-justify">Список всех категорий</h6>
+                        </div>
+                    </a>
+                    <a href="{{ path('admin_category_new')}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 text-justify">Добавить категорию</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="list-group">
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start active">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Рекламные блоки</h5>
+                    </div>
+                    </a>
+                    <a href="{{ path('admin_ad_list')}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 text-justify">Список всех категорий</h6>
+                        </div>
+                    </a>
+                    <a href="{{ path('admin_ad_new')}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 text-justify">Добавить блок</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="list-group">
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start active">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Графика</h5>
+                    </div>
+                    </a>
+                    <a href="{{ path('admin_graphic')}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 text-justify">Изменение фона</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="list-group">
+                    <a href="" class="list-group-item list-group-item-action flex-column align-items-start active">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Меню</h5>
+                        </div>
+                    </a>
+                    <a href="{{ path('admin_menu')}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 text-justify">Редактирование меню</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+{% endblock %}
+

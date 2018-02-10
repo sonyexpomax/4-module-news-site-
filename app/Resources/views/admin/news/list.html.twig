@@ -1,0 +1,105 @@
+{% extends 'baseAdmin.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+{% endblock %}
+{%  block title %}Список новостей{% endblock %}
+{% block body %}
+                <div class="float-right" style="margin-bottom: 10px; margin-top: 20px;">
+                    <a href="{{ path('admin_news_new') }}" class="btn btn-md btn-primary pull-right">Добавить новость</a>
+                </div>
+
+                <h1 class="float-left">Список новостей</h1>
+
+                <table class="table table-striped">
+                    <tr>
+                        <th>Code</th>
+                        <th>Название</th>
+                        <th>Дата</th>
+                        <th>Действие</th>
+                    </tr>
+                    {% for news in newss %}
+                        <tr>
+                            <td>{{ loop.index + 30*(current_page -1)}}.</td>
+                            <td>{{ news.name }}</td>
+                            <td>{{ news.createdAt |date  }}</td>
+                            <td>
+                                <a href="{{ path('admin_news_edit', {'id': news.id}) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+                                <a href="{{ path('admin_news_delete', {'id': news.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+    <nav aria-label="Page navigation example" class="center-div">
+        <ul class="pagination">
+
+            {% if  current_page == 1 %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1"><<</a>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('admin_news_list',{'page_number':'page='~(current_page-1)})}}"><<</a>
+                </li>
+            {% endif %}
+
+
+            {% for i in range(1,  current_page ) %}
+                {% if  i == current_page %}
+                    <li class="page-item active active-page">
+                        <span class="page-link">{{ i }}</span>
+                    </li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="{{ path('admin_news_list',{'page_number':'page='~i})}}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if  (total_pages - current_page) > 1 %}
+                <li class="page-item"><a data-total="{{ total_pages }}" data-current="{{ current_page }}" class="page-link get-other-pages" href="">...</a></li>
+            {% endif %}
+
+            {% if  (total_pages - current_page) > 0 %}
+                <li class="page-item"><a class="page-link" href="{{ path('admin_news_list',{'page_number':'page='~(total_pages)})}}">{{ total_pages }}</a></li>
+            {% endif %}
+
+            {% if  current_page == total_pages %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">>></a>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('admin_news_list',{'page_number':'page='~(current_page+1)})}}">>></a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </nav>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $( ".get-other-pages" ).click(function(event) {
+            event.preventDefault();
+
+            var $getOtherPagesElem = $( ".get-other-pages" );
+            var total_pages = $getOtherPagesElem.data( "total" );
+            var curent_page = $getOtherPagesElem.data( "current" );
+
+            $( ".get-other-pages" ).fadeOut(300);
+
+            for(var i = (total_pages-1); i > curent_page; i--){
+
+                var url = '{{ path('admin_news_list',{'page_number':'page=replace_id'})}}';
+                url = url.replace("replace_id", i);
+
+                $( ".active-page" ).after('' +
+                    '<li class="page-item">' +
+                    '<a class="page-link" href="'+url+'">'+i+'</a>' +
+                    '</li>').fadeIn(1000);
+            }
+        });
+    </script>
+{% endblock %}
+
+

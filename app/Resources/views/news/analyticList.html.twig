@@ -1,0 +1,92 @@
+{% extends "baseWithAd.html.twig" %}
+{%  block title %}Аналитика{% endblock %}
+{% block body %}
+
+        <h2>Аналитика</h2>
+        <ul class="list-group">
+            {% for item in news %}
+                <a class="list-group-item" href="{{ path('news_view', {'id': item.news_id}) }}">
+                    <div class="bmd-list-group-col">
+                        <p class="list-group-item-heading">{{ item.news_name }}</p>
+                        <p class="list-group-item-text">Подробнее</p>
+                    </div>
+                </a>
+
+
+            {% endfor %}
+        </ul>
+
+
+    <nav aria-label="Page navigation example" class="center-div">
+        <ul class="pagination">
+
+            {% if  current_page == 1 %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1"><<</a>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('analytics_list',{'page_number':'page='~(current_page-1)})}}"><<</a>
+                </li>
+            {% endif %}
+
+
+            {% for i in range(1,  current_page ) %}
+                {% if  i == current_page %}
+                    <li class="page-item active active-page">
+                        <span class="page-link">{{ i }}</span>
+                    </li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="{{ path('analytics_list',{'page_number':'page='~i})}}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if  (total_pages - current_page) > 1 %}
+                <li class="page-item"><a data-total="{{ total_pages }}" data-current="{{ current_page }}" class="page-link get-other-pages" href="">...</a></li>
+            {% endif %}
+
+            {% if  (total_pages - current_page) > 0 %}
+                <li class="page-item"><a class="page-link" href="{{ path('analytics_list',{'page_number':'page='~(total_pages)})}}">{{ total_pages }}</a></li>
+            {% endif %}
+
+            {% if  current_page == total_pages %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Next >></a>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('analytics_list',{'page_number':'page='~(current_page+1)})}}">>></a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </nav>
+
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+
+     <script>
+         $( ".get-other-pages" ).click(function(event) {
+             event.preventDefault();
+
+             var $getOtherPagesElem = $( ".get-other-pages" );
+             var total_pages = $getOtherPagesElem.data( "total" );
+             var curent_page = $getOtherPagesElem.data( "current" );
+
+             $( ".get-other-pages" ).fadeOut(300);
+
+             for(var i = (total_pages-1); i > curent_page; i--){
+
+                 var url = '{{ path('analytics_list',{'page_number':'page=replace_id'})}}';
+                 url = url.replace("replace_id", i);
+
+                 $( ".active-page" ).after('' +
+                     '<li class="page-item">' +
+                     '<a class="page-link" href="'+url+'">'+i+'</a>' +
+                     '</li>').fadeIn(1000);
+             }
+         });
+     </script>
+ {% endblock %}
