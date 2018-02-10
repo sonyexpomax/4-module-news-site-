@@ -170,19 +170,44 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
      */
     public function findLastNewsWithImages($count_of_last_news){
 
-        return $this->createQueryBuilder('news')
-            ->select(
-                "CONCAT('/img/news/', images.name) as image_url",
-                'news.id as news_id',
-                'news.name as news_name',
-                'news.createdAt as createdAt',
-                'news.description as news_description'
-            )
-            ->leftJoin('news.images','images')
-            ->orderBy('createdAt', 'DESC')
-            ->setMaxResults( $count_of_last_news )
-            ->getQuery()
-            ->getArrayResult();
+        $em = $this->getEntityManager();
+
+        $query = '
+            SELECT 
+                CONCAT(\'/img/news/\', i1.name) as image_url,
+                n1.id as news_id,
+                n1.name as news_name,
+                n1.created_at as createdAt,
+                n1.description as news_description
+            FROM images AS i1
+            LEFT JOIN images AS i2
+                ON i1.news_id = i2.news_id
+                AND i1.name > i2.name
+            JOIN news AS n1 
+                ON i1.news_id = n1.id 
+                WHERE i2.id IS NULL
+            ORDER BY n1.created_at DESC
+            LIMIT 4
+        ';
+        $statement = $em->getConnection()->prepare($query);
+        $statement->execute();
+        return $statement->fetchAll();
+//        return $this->createQueryBuilder('news')
+//            ->select(
+//                'count(news.id)',
+    //                "CONCAT('/img/news/', images.name) as image_url",
+//                'news.id as news_id',
+//                'news.name as news_name',
+//                'news.createdAt as createdAt',
+//                'news.description as news_description'
+//            )
+//            ->leftJoin('news.images','images')
+//            ->groupBy('news.id')
+//            ->orderBy('createdAt', 'DESC')
+//            ->setMaxResults( $count_of_last_news )
+//            ->getQuery()
+//            ->getResult();
+
 
    }
 

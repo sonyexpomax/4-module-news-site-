@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3a299137-ce22-437a-84c3-145eade7a96c" name="Default" comment="" />
+    <list default="true" id="3a299137-ce22-437a-84c3-145eade7a96c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/NewsRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/NewsRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/conf/background_menu.txt" afterPath="$PROJECT_DIR$/src/AppBundle/conf/background_menu.txt" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,28 +20,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="704">
               <caret line="726" column="30" lean-forward="false" selection-start-line="726" selection-start-column="30" selection-end-line="726" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MenuAdminController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/admin/MenuAdminController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="100" column="62" lean-forward="false" selection-start-line="100" selection-start-column="62" selection-end-line="100" selection-end-column="62" />
-              <folding>
-                <element signature="e#1455#1482#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CategoryRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/CategoryRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1005">
-              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -66,19 +48,30 @@
       <file leaf-file-name="NewsRepository.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/NewsRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-105">
-              <caret line="60" column="4" lean-forward="false" selection-start-line="60" selection-start-column="4" selection-end-line="82" selection-end-column="46" />
+            <state relative-caret-position="270">
+              <caret line="184" column="9" lean-forward="false" selection-start-line="184" selection-start-column="9" selection-end-line="184" selection-end-column="9" />
               <folding>
-                <marker date="1518284928604" expanded="true" signature="367:1195" ph="select news_... category_id" />
-                <marker date="1518284928604" expanded="true" signature="497:1083" ph="select categ... id" />
-                <marker date="1518284928604" expanded="true" signature="785:936" ph="SELECT news.... news" />
-                <marker date="1518284928604" expanded="true" signature="986:1014" ph="select @num:... " />
-                <marker date="1518284928604" expanded="true" signature="1829:2256" ph="SELECT count... news" />
-                <marker date="1518284928604" expanded="true" signature="1829:2257" ph="SELECT count... news" />
-                <marker date="1518284928604" expanded="true" signature="1829:2272" ph="SELECT count... news" />
-                <marker date="1518284928604" expanded="true" signature="1829:2614" ph="SELECT count... news" />
-                <marker date="1518284928604" expanded="true" signature="1829:5699" ph="SELECT count... news" />
+                <marker date="1518301306153" expanded="true" signature="367:1195" ph="select news_... category_id" />
+                <marker date="1518301306153" expanded="true" signature="497:1083" ph="select categ... id" />
+                <marker date="1518301306153" expanded="true" signature="785:936" ph="SELECT news.... news" />
+                <marker date="1518301306153" expanded="true" signature="986:1014" ph="select @num:... " />
+                <marker date="1518301306153" expanded="true" signature="1829:2256" ph="SELECT count... news" />
+                <marker date="1518301306153" expanded="true" signature="1829:2257" ph="SELECT count... news" />
+                <marker date="1518301306153" expanded="true" signature="1829:2272" ph="SELECT count... news" />
+                <marker date="1518301306153" expanded="true" signature="1829:2614" ph="SELECT count... news" />
+                <marker date="1518301306153" expanded="true" signature="1829:6466" ph="SELECT count... news" />
+                <marker date="1518301306153" expanded="true" signature="5685:6231" ph="SELECT CONCA... images" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="26" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,8 +79,8 @@
       <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+            <state relative-caret-position="390">
+              <caret line="43" column="44" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -109,19 +102,6 @@
             <state relative-caret-position="854">
               <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="comments.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/js/comments.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="689">
-              <caret line="119" column="15" lean-forward="false" selection-start-line="92" selection-start-column="7" selection-end-line="119" selection-end-column="15" />
-              <folding>
-                <marker date="1518087542710" expanded="true" signature="968:1004" ph="..." />
-                <marker date="1518087542710" expanded="true" signature="4501:4548" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -543,17 +523,18 @@
       <workItem from="1518108040730" duration="5410000" />
       <workItem from="1518158717537" duration="30055000" />
       <workItem from="1518198434760" duration="6015000" />
-      <workItem from="1518252644905" duration="31711000" />
+      <workItem from="1518252644905" duration="35750000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="285356000" />
+    <option name="totallyTimeSpent" value="289395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="35" width="1922" height="1011" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15528281" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15528281" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -585,14 +566,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="43" column="16" lean-forward="false" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/services.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="597">
@@ -952,10 +925,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="4" column="26" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -968,20 +941,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="43" column="44" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/NewsRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-105">
-          <caret line="60" column="4" lean-forward="false" selection-start-line="60" selection-start-column="4" selection-end-line="82" selection-end-column="46" />
+        <state relative-caret-position="270">
+          <caret line="184" column="9" lean-forward="false" selection-start-line="184" selection-start-column="9" selection-end-line="184" selection-end-column="9" />
           <folding>
-            <marker date="1518284928604" expanded="true" signature="367:1195" ph="select news_... category_id" />
-            <marker date="1518284928604" expanded="true" signature="497:1083" ph="select categ... id" />
-            <marker date="1518284928604" expanded="true" signature="785:936" ph="SELECT news.... news" />
-            <marker date="1518284928604" expanded="true" signature="986:1014" ph="select @num:... " />
-            <marker date="1518284928604" expanded="true" signature="1829:2256" ph="SELECT count... news" />
-            <marker date="1518284928604" expanded="true" signature="1829:2257" ph="SELECT count... news" />
-            <marker date="1518284928604" expanded="true" signature="1829:2272" ph="SELECT count... news" />
-            <marker date="1518284928604" expanded="true" signature="1829:2614" ph="SELECT count... news" />
-            <marker date="1518284928604" expanded="true" signature="1829:5699" ph="SELECT count... news" />
+            <marker date="1518301306153" expanded="true" signature="367:1195" ph="select news_... category_id" />
+            <marker date="1518301306153" expanded="true" signature="497:1083" ph="select categ... id" />
+            <marker date="1518301306153" expanded="true" signature="785:936" ph="SELECT news.... news" />
+            <marker date="1518301306153" expanded="true" signature="986:1014" ph="select @num:... " />
+            <marker date="1518301306153" expanded="true" signature="1829:2256" ph="SELECT count... news" />
+            <marker date="1518301306153" expanded="true" signature="1829:2257" ph="SELECT count... news" />
+            <marker date="1518301306153" expanded="true" signature="1829:2272" ph="SELECT count... news" />
+            <marker date="1518301306153" expanded="true" signature="1829:2614" ph="SELECT count... news" />
+            <marker date="1518301306153" expanded="true" signature="1829:6466" ph="SELECT count... news" />
+            <marker date="1518301306153" expanded="true" signature="5685:6231" ph="SELECT CONCA... images" />
           </folding>
         </state>
       </provider>
