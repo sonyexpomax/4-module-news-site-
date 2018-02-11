@@ -36,8 +36,9 @@ class CommentController extends BaseController
 
         $comment = new Comment();
 
+        //check politic category
         $politic_id = $this->container->getParameter('politic_id');
-        if($news->getCategory()->getId() != $politic_id){
+        if($news->getCategory()['id'] != $politic_id){
             $comment->setIsActive(true);
         }
 

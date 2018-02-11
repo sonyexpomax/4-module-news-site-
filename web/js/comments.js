@@ -50,18 +50,27 @@
         commentHtml +=  '<div class="bottom-comment">' +
             '<div class="comment-date">' + dateComment + '</div>';
 
-
-        if($('#logout').data('user_name') && !hasOpinion ){
-            commentHtml +=
-                '<ul class="comment-actions">' +
-                    '<li class="complain js-plus"><i class="fa fa-hand-o-up fa-2x"></i><span> ' + plus + '</span></li>' +
-                    '<li class="reply js-minus"><i class="fa fa-hand-o-down fa-2x"></i><span> ' + minus + '</span></li>'+
-                '</ul>';
+        if($('#logout').data('user_name')){
+            if(!hasOpinion) {
+                commentHtml +=
+                    '<ul class="comment-actions">' +
+                        '<li class="complain js-plus"><i class="fa fa-hand-o-up fa-2x"></i><span> ' + plus + '</span></li>' +
+                        '<li class="reply js-minus"><i class="fa fa-hand-o-down fa-2x"></i><span> ' + minus + '</span></li>' +
+                    '</ul>';
+            }
+            else {
+                commentHtml +=
+                    '<ul class="comment-actions">' +
+                        '<li class="complain" title="Вы уже высказали свое мнение по этому комментарию"><i class="fa fa-get-pocket fa-2x"></i><span></span></li>' +
+                        '<li class="complain"><i class="fa fa-hand-o-up fa-2x"></i><span> ' + plus + '</span></li>' +
+                        '<li class="reply"><i class="fa fa-hand-o-down fa-2x"></i><span> ' + minus + '</span></li>'+
+                    '</ul>';
+            }
         }
         else{
             commentHtml +=
                 '<ul class="comment-actions">' +
-                    '<li class="complain" title="Вы уже высказали свое мнение по этому комментарию"><i class="fa fa-get-pocket fa-2x"></i><span></span></li>' +
+                    '<li class="complain" title="Комментировать могут только зарегестрированные пользователи"><i class="fa fa-ban fa-2x"></i><span></span></li>' +
                     '<li class="complain"><i class="fa fa-hand-o-up fa-2x"></i><span> ' + plus + '</span></li>' +
                     '<li class="reply"><i class="fa fa-hand-o-down fa-2x"></i><span> ' + minus + '</span></li>'+
                 '</ul>';
@@ -253,6 +262,14 @@
                 .addClass('fa-spinner')
                 .addClass('fa-spin');
             addComment(text, newsId, parentId, $('#button-icon-child'), true);
+
+
+            setTimeout(function () {
+                $mainComment = $('#comment-edit').closest('.main-comment');
+                $mainComment.find('#comment-edit').fadeOut(300).remove();
+                $mainComment.find('.comment-text').attr('contenteditable', false);
+
+            }, 5000);
         }
     });
 

@@ -390,6 +390,7 @@ p {
    border: solid 1px #830f16;
     background-color: #fffae1;
     border-radius: 3px;
+    padding: 10px;
 }
 
 textarea::-webkit-input-placeholder {
