@@ -133,7 +133,8 @@
      {{ parent() }}
      <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
      <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-
+     <script src="{{ asset('js/cookie.js') }}"></script>
+     <script src="{{ asset('js/showDeliv.js') }}"></script>
      <script type="text/javascript">
          $(function() {
              $('input[name="daterange"]').daterangepicker({
