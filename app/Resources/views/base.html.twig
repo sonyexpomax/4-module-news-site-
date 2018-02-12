@@ -9,11 +9,19 @@
         <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <style>
+        body{
+            background-color:{{ background.getBackgroundBody() }}
+        }
+        .menu-bg{
+            background-color: {{ background.getBackgroundMenu() }}
+        }
+    </style>
 </head>
-<body style="background-color:{{ background.getBackgroundBody() }} ">
+<body>
 <header>
 
-    <nav class="navbar navbar-expand-md fixed-top navbar-dark " style="background-color:{{ background.getBackgroundMenu() }}">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark menu-bg">
         <a class="navbar-brand" href="{{ path('homepage') }}">Новостной сайт</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,6 +35,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Категории новостей</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
                         {% for menu_item in menu.getMenu()%}
                             {% if menu_item.category_parent_id is null %}
                                 <a class="dropdown-item" href="{{ path('news_list', {'category_id': menu_item.category_id}) }}">{{ menu_item.category_name }}</a>
@@ -64,8 +73,12 @@
             {% endif %}
 
             <ul class="nav navbar-nav navbar-right">
-                {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')%}
-                    <li><a  href="{{ path('security_logout') }}" class="btn btn-outline-success my-2 my-sm-0" title="logout" id="logout" data-user_name="{{  app.user.name }}"><i class="fa fa-sign-out" aria-hidden="true"></i>  {{  app.user.name }}, logout?</a></li>
+                {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                    <li><a  href="{{ path('security_logout') }}" class="btn btn-outline-success my-2 my-sm-0" title="logout" id="logout"
+                                {% if is_granted('ROLE_USER') %}
+                                    data-user_name="{{  app.user.name }}"
+                                {% endif %}
+                        ><i class="fa fa-sign-out" aria-hidden="true"></i>  {{  app.user.name }}, logout?</a></li>
                 {% else %}
                     <li><a  href="{{ path('security_login') }}" class="btn btn-outline-success my-2 my-sm-0"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
                 {% endif %}

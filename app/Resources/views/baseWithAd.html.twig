@@ -10,12 +10,21 @@
         <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 
     {% endblock %}
+
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <style>
+        body{
+            background-color:{{ background.getBackgroundBody() }}
+        }
+        .menu-bg{
+            background-color: {{ background.getBackgroundMenu() }}
+        }
+    </style>
 </head>
-<body style="background-color:{{ background.getBackgroundBody() }}">
+<body>
 <header>
 
-    <nav class="navbar navbar-expand-md fixed-top navbar-dark " style="background-color: {{ background.getBackgroundMenu() }}">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark menu-bg">
         <a class="navbar-brand" href="{{ path('homepage') }}">Новостной сайт</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
