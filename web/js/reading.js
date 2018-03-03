@@ -1,24 +1,30 @@
-var readingNowLast = 0;
-var totalRead = parseInt($('#total-read').html());
-var currentTotalRead = totalRead;
+var reading = {
 
-function getRandomReadingNow(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-}
+    readingNowLast: 0,
+    totalRead: parseInt($('#total-read').html()),
+    currentTotalRead: parseInt($('#total-read').html()),
 
-function generateReadingNow(){
-    var readingNow = getRandomReadingNow(0,4);
+    getRandomReadingNow: function (min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    },
 
-    if(readingNow > readingNowLast){
-        currentTotalRead += ((readingNow - readingNowLast));
-        $('#total-read')
-            .removeClass('fa-book')
-            .text('')
-            .addClass('fa-spinner')
-            .addClass('fa-spin');
-        updateTotalRead((readingNow - readingNowLast));
+    generateReadingNow: function () {
+        var readingNow = reading.getRandomReadingNow(0, 4);
+        console.log(readingNow);
+        console.log(reading.readingNowLast);
+        console.log(reading.totalRead );
+
+        if (readingNow > reading.readingNowLast) {
+            reading.currentTotalRead += ((readingNow - reading.readingNowLast));
+            $('#total-read')
+                .removeClass('fa-book')
+                .text('')
+                .addClass('fa-spinner')
+                .addClass('fa-spin');
+            reading.updateTotalRead((readingNow - reading.readingNowLast));
+        }
+
+        reading.readingNowLast = readingNow;
+        document.querySelector('#reading-now').textContent = readingNow;
     }
-
-    readingNowLast = readingNow;
-    document.querySelector('#reading-now').textContent = readingNow;
-}
+};

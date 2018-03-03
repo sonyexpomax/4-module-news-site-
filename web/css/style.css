@@ -71,12 +71,9 @@ main{
 }
 .img-responsive{
     width: 50px;
-    /*border-radius: 100%;
-    margin-top: 10px;*/
 }
-
 .thumbnail {
-    padding:0px;
+    padding:0;
 }
 .panel {
     position:relative;
@@ -109,14 +106,13 @@ main{
 .panel-body{
     padding: 10px;
 }
-
 .panel>.panel-heading:after{
     border-width:7px;
     border-right-color:#f7f7f7;
     margin-top:1px;
     margin-left:2px;
 }
-.panel>.panel-heading:before{
+.panel > .panel-heading:before{
     border-right-color:#ddd;
     border-width:8px;
 }
@@ -202,17 +198,14 @@ hr.style-two {
     cursor: pointer;
     width: auto;
     color: #797579;
-
     background: none;
 }
 .row{
     margin-bottom: 20px;
 }
-
 .search-container {
     max-width: 950px;
     margin: 5px;
-
 }
 .search {
     border-radius: 5px;
@@ -227,7 +220,6 @@ hr.style-two {
 .search:focus {
     width: 400px;
 }
-
 #cart-count {
     position: absolute;
     top: 3px;
@@ -256,7 +248,7 @@ hr.style-two {
 .list-group-item-text {
     text-decoration: none;
     padding: 0;
-    margin: 0px;
+    margin: 0;
     font-size: 14px;
     color: #606260;
 }
@@ -267,7 +259,6 @@ hr.style-two {
 .list-group{
     width: 100%;
 }
-
 input, textarea {
     outline: none;
     border: none;
@@ -291,11 +282,9 @@ input:-moz-placeholder, textarea:-moz-placeholder {
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     color: #ced2db;
 }
-
 p {
     line-height: 1.3125rem;
 }
-
 .comments {
     margin: 2.5rem auto 0;
     max-width: 60.75rem;
@@ -309,7 +298,6 @@ p {
     min-height: 5.3125rem;
     float: right;
 }
-
 .photo {
     padding-top: 0.625rem;
     display: table-cell;
@@ -321,7 +309,6 @@ p {
     border-radius: 50%;
     background-size: contain;
 }
-
 .comment-block {
     padding: 5px;
     background-color: #fff;
@@ -330,33 +317,28 @@ p {
     border-radius: 0.1875rem;
     border: 1px solid rgba(0,0,0,.125);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
-    width:100%-;
+    width:100%;
 }
 .comment-block textarea {
     width: 100%;
     resize: none;
 }
-
 .comment-header {
     font-weight: 600;
     font-size: 18px;
 }
-
 .comment-text {
     margin-bottom: 5px;
     text-align: justify;
 }
-
 .bottom-comment {
     color: #acb4c2;
     font-size: 0.875rem;
 }
-
 .comment-date {
     float: left;
     color: #85171c;
 }
-
 .comment-actions {
     float: right;
 }
@@ -392,7 +374,6 @@ p {
     border-radius: 3px;
     padding: 10px;
 }
-
 textarea::-webkit-input-placeholder {
     color: #585a58;
 }
@@ -405,7 +386,6 @@ textarea::-webkit-input-placeholder {
     padding: 5px;
     border-radius: 0.1875rem;
     border: 1px solid rgba(0,0,0,.125);
-
 }
 .form-group-1{
     width: 100%;
@@ -419,7 +399,6 @@ textarea::-webkit-input-placeholder {
     border: 1px solid rgba(0,0,0,.125);
     display: inline;
 }
-
 .slide-item{
     display: none;
 }
@@ -523,22 +502,17 @@ textarea::-webkit-input-placeholder {
     font-size: 140%;
     color: #700b7a;
 }
-
 .adv:hover > .adv-price-block >.adv-price {
     font-size: 90%;
-
 }
-
-
 .adv:hover > .adv-kupon {
-display: block;
+    display: block;
     position: absolute;
     margin-left: 220px;
     z-index: 100;
     width: 200px;
     margin-top: -70px;
 }
-
 
 .search_input{
     width: 390px;
@@ -548,7 +522,6 @@ display: block;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     border: none;
 }
-
 .tips{
     width: 380px;
     margin-left: 5px;
@@ -588,8 +561,6 @@ display: block;
 .height-select-form{
     height: 200px;
 }
-
-
 .admin-container{
     margin-top: 30px;
 }
@@ -600,9 +571,6 @@ display: block;
 .nav-link{
     color: #eeeeee !important;
 }
-
-
-
 .banner{
     width: 450px;
     height: 250px;
@@ -616,7 +584,6 @@ display: block;
     background-color: #5eb5e0;
     z-index: 1000;
 }
-
 .banner input{
     width: 100%;
     border: solid 1px #000000;
@@ -625,7 +592,6 @@ display: block;
     font-size: 18px;
     padding: 5px;
 }
-
 .banner h4{
     width: 100%;
     text-align: center;
