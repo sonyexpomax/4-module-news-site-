@@ -15,5 +15,12 @@ parameters:
     mailer_user: ~
     mailer_password: ~
 
+    news_per_page: 5
+    item_per_page_admin: 30
+    count_of_last_news: 4
+    politic_id: 4
+    app.background_body_path: '/conf/background_body.txt'
+    app.background_menu_path: '/conf/background_menu.txt'
+
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
