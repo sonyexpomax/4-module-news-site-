@@ -6,7 +6,7 @@
  * Time: 11:36
  */
 namespace AppBundle\Controller\admin;
-use AppBundle\Entity\Category;
+
 use AppBundle\Entity\Images;
 use AppBundle\Entity\News;
 use AppBundle\Form\NewsFormEditType;
@@ -17,12 +17,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
+ * Class NewsAdminController
+ * @package AppBundle\Controller\admin
  * @Route("/admin")
  */
 class NewsAdminController extends Controller
 {
 
     /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/news/new", name="admin_news_new")
      */
     public function newAction(Request $request)
@@ -150,17 +154,20 @@ class NewsAdminController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param News $news
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/news/{id}/delete", name="admin_news_delete")
      */
     public function deleteAction(Request $request, News $news)
     {
 
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($news);
-            $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($news);
+        $em->flush();
 
-            $this->addFlash('success', 'Новость удалена!');
+        $this->addFlash('success', 'Новость удалена!');
 
-            return $this->redirectToRoute('admin_news_list');
+        return $this->redirectToRoute('admin_news_list');
     }
 }

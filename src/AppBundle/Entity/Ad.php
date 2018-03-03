@@ -5,8 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category
- *
+ * Ad
  * @ORM\Table(name="ad")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AdRepository")
  */
@@ -97,8 +96,5 @@ class Ad
     {
         $this->seller = $seller;
     }
-
-
-
 }
 

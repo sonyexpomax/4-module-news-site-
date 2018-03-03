@@ -2,9 +2,6 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\User;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\ref;
-
 class NewsRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
@@ -56,39 +53,12 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
      */
     public function findTotalNewsByCustomSearch($date_range, $category_list, $tag_list){
 
-        $em = $this->getEntityManager();
-
-//        $query = "
-//        SELECT count(news.id) AS sclr_0, count(news.id) AS sclr_1
-//        FROM news
-//        LEFT JOIN news_category news_category ON news.id = news_category.news_id
-//        LEFT JOIN category ON category.id = news_category.category_id
-//        LEFT JOIN news_tag ON news.id = news_tag.news_id
-//        LEFT JOIN tag ON tag.id = news_tag.tag_id
-//        WHERE news.created_at > '$date_range[0]'
-//        AND news.created_at < '$date_range[1]'";
-//
-//        if ($category_list) {
-//            $categories = implode('',$category_list);
-//            $query .= " AND category.id IN ($categories) ";
-//        }
-//        if ($tag_list) {
-//            $tags = implode('',$tag_list);
-//            $query .= " AND tag.id IN ($tags) ";
-//        }
-//        $query .=" GROUP BY news.name ";
-//
-//        $statement = $em->getConnection()->prepare($query);
-//        $statement->execute();
-//        return (int) $statement->fetchAll();
-
         $result = $this->createQueryBuilder('news')
             ->select('count(news) as totalCount, count(news.id)')
             ->leftJoin('news.category','category')
             ->leftJoin('news.tag','tag')
             ->where('news.createdAt > :date_start')
             ->andWhere('news.createdAt < :date_stop');
-
 
         if ($category_list) {
             $result->andWhere('category.id IN (:category_array)');
@@ -109,7 +79,6 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('date_start', $date_range[0])
             ->setParameter('date_stop', $date_range[1])
             ->groupBy('news.name');
-       // dump($result->getQuery()->getSQL());die;
        return (int) $result->getQuery()->getScalarResult()[0]['totalCount'];
     }
 
@@ -168,7 +137,7 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
      * @param $count_of_last_news
      * @return array
      */
-    public function findLastNewsWithImages($count_of_last_news){
+    public function findLastNewsWithImages(){
 
         $em = $this->getEntityManager();
 
@@ -192,23 +161,6 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
         $statement = $em->getConnection()->prepare($query);
         $statement->execute();
         return $statement->fetchAll();
-//        return $this->createQueryBuilder('news')
-//            ->select(
-//                'count(news.id)',
-    //                "CONCAT('/img/news/', images.name) as image_url",
-//                'news.id as news_id',
-//                'news.name as news_name',
-//                'news.createdAt as createdAt',
-//                'news.description as news_description'
-//            )
-//            ->leftJoin('news.images','images')
-//            ->groupBy('news.id')
-//            ->orderBy('createdAt', 'DESC')
-//            ->setMaxResults( $count_of_last_news )
-//            ->getQuery()
-//            ->getResult();
-
-
    }
 
     /**
@@ -241,7 +193,7 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
         if (!$result) {
            return;
         }
-//dump($result);die;
+
         $news = $result[0];
 
         $images = [];
@@ -417,18 +369,6 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
         return $result;
     }
 
-//    /**
-//     * @return array
-//     */
-//    public function findAllOrderByCreation(){
-//
-//        return $this->createQueryBuilder('news')
-//            ->orderBy('news.createdAt', 'DESC')
-//            ->getQuery()
-//            ->getArrayResult();
-//
-//    }
-
     /**
      * @return array
      */
@@ -453,7 +393,6 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
             ->select('count(news) as totalCount')
             ->getQuery()
             ->getScalarResult();
-
         return (int) $result[0]['totalCount'];
 
     }

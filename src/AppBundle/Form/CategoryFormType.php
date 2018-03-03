@@ -3,9 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Category;
-use AppBundle\Entity\SubFamily;
 use AppBundle\Repository\CategoryRepository;
-use AppBundle\Repository\SubFamilyRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -30,7 +28,6 @@ class CategoryFormType extends AbstractType
                     return $repo->createAlphabeticalQueryBuilder();
                 },
                     'empty_data' => 'friend',
-
                 ]
             );
     }

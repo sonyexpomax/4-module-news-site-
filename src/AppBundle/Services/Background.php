@@ -7,9 +7,10 @@
  */
 namespace AppBundle\Services;
 
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+/**
+ * Class Background
+ * @package AppBundle\Services
+ */
 class Background
 {
     private $background_menu_path;
@@ -22,7 +23,6 @@ class Background
     public function getBackgroundBody()
     {
        return $background_body = file_get_contents($this->app_dir.$this->background_body_path);
-
     }
 
     /**

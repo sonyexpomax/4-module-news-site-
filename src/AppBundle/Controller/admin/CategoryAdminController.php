@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 class CategoryAdminController extends Controller
 {
     /**
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/category", name="admin_category_list")
      */
     public function indexAction()
@@ -32,6 +33,8 @@ class CategoryAdminController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/category/new", name="admin_category_new")
      */
     public function newAction(Request $request)
@@ -58,6 +61,9 @@ class CategoryAdminController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param Category $category
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/category/{id}/edit", name="admin_category_edit")
      */
     public function editAction(Request $request, Category $category)
@@ -82,8 +88,9 @@ class CategoryAdminController extends Controller
         ]);
     }
 
-
     /**
+     * @param Category $category
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/category/{id}/delete", name="admin_category_delete")
      */
     public function deleteAction(Category $category)

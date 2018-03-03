@@ -13,11 +13,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
+ * Class GraphicAdminController
+ * @package AppBundle\Controller\admin
  * @Route("/admin")
  */
 class GraphicAdminController extends Controller
 {
     /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/graphic", name="admin_graphic")
      */
     public function indexAction(Request $request)

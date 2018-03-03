@@ -82,6 +82,9 @@ class CommentAdminController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param Comment $comment
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/comment/{id}/edit", name="admin_comment_edit")
      */
     public function editAction(Request $request, Comment $comment)
@@ -107,6 +110,8 @@ class CommentAdminController extends Controller
     }
 
     /**
+     * @param Comment $comment
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/comment/{id}/delete", name="admin_comment_delete")
      */
     public function deleteAction(Comment $comment)

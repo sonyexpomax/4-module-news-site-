@@ -151,9 +151,7 @@ class CommentRepository extends \Doctrine\ORM\EntityRepository
             ->select('count(comment) as totalCount')
             ->getQuery()
             ->getScalarResult();
-
         return (int) $result[0]['totalCount'];
-
     }
 
     /**

@@ -8,15 +8,18 @@ use AppBundle\Entity\User;
 use AppBundle\Pagination\Pagination;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class CommentController extends BaseController
 {
     /**
+     * @param $news_id
+     * @param $parent_id
+     * @param Request $request
+     * @return JsonResponse
      * @Route("/add_comment/{news_id}/{parent_id}", name="add_comment")
-     * @Method("POST")
+     * @Method("GET")
      */
     public function addCommentAction($news_id, $parent_id, Request $request)
     {
@@ -63,6 +66,8 @@ class CommentController extends BaseController
     }
 
     /**
+     * @param $id
+     * @return JsonResponse
      * @Route("/update_plus/{id}/", name="update_plus")
      * @Method("GET")
      */
@@ -93,6 +98,8 @@ class CommentController extends BaseController
     }
 
     /**
+     * @param $id
+     * @return JsonResponse
      * @Route("/update_minus/{id}/", name="update_minus")
      * @Method("GET")
      */
@@ -118,6 +125,9 @@ class CommentController extends BaseController
     }
 
     /**
+     * @param $id
+     * @param Request $request
+     * @return JsonResponse
      * @Route("/update_text/{id}/", name="update_text")
      * @Method("GET")
      */
@@ -142,14 +152,16 @@ class CommentController extends BaseController
         return new JsonResponse( $request->get($text));
     }
 
-
     /**
+     * @param $commentator_id
+     * @param $page_number
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/commentators/{commentator_id}/{page_number}", requirements={"page"="\d+"}, defaults={"page_number"=1}, name="comments_list")
      */
     public function listAction($commentator_id, $page_number, Request $request)
     {
 
-        //get page number
         if(!is_int($page_number)){
             $pattern = '/^page=([0-9]+)$/';
             preg_match($pattern, $page_number, $matches);
@@ -158,7 +170,6 @@ class CommentController extends BaseController
 
         $products_per_page = $this->container->getParameter('news_per_page');
 
-        //get news
         $repository = $this->getDoctrine()->getRepository(Comment::class);
 
         //check user

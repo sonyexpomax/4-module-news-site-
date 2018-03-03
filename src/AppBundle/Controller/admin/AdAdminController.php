@@ -18,7 +18,8 @@ use Symfony\Component\HttpFoundation\Request;
 class AdAdminController extends Controller
 {
     /**
-     * @Route("/ad", name="admin_ad_list")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/ad", name="admin_ad_list"
      */
     public function indexAction()
     {
@@ -32,6 +33,8 @@ class AdAdminController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/ad/new", name="admin_ad_new")
      */
     public function newAction(Request $request)
@@ -58,6 +61,9 @@ class AdAdminController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param Ad $ad
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/ad/{id}/edit", name="admin_ad_edit")
      */
     public function editAction(Request $request, Ad $ad)
@@ -83,6 +89,8 @@ class AdAdminController extends Controller
     }
 
     /**
+     * @param Ad $ad
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/ad/{id}/delete", name="admin_ad_delete")
      */
     public function deleteAction(Ad $ad)

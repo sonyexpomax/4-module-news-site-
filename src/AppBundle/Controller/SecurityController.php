@@ -2,13 +2,13 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Form\LoginForm;
 
 class SecurityController extends BaseController
 {
     /**
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/login", name="security_login")
      */
     public function loginAction()
@@ -35,6 +35,7 @@ class SecurityController extends BaseController
     }
 
     /**
+     * @throws \Exception
      * @Route("/logout", name="security_logout")
      */
     public function logoutAction()

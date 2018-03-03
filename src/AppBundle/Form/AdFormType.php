@@ -2,8 +2,6 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\SubFamily;
-use AppBundle\Repository\SubFamilyRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;

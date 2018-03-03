@@ -8,11 +8,13 @@
 
 namespace AppBundle\Services;
 
-
 use Doctrine\ORM\EntityManager;
-use function Symfony\Component\Debug\Tests\testHeader;
 use Symfony\Component\DependencyInjection\Container;
 
+/**
+ * Class Advertisement
+ * @package AppBundle\Services
+ */
 class Advertisement
 {
     protected $em;
@@ -41,18 +43,13 @@ class Advertisement
         $this->allblocks = $output;
     }
 
-
     public function getFirstBlocks()
     {
        return  array_slice($this->allblocks, 0, 4);
-
     }
-
 
     public function getSecondBlocks()
     {
-
         return  array_slice($this->allblocks, 4, 8);
-
     }
 }

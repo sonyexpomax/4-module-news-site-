@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Category
- *
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
  */
@@ -50,7 +49,6 @@ class Category
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
     private $parentId;
-
 
     public function __construct() {
         $this->news = new \Doctrine\Common\Collections\ArrayCollection();
@@ -144,7 +142,5 @@ class Category
     {
         $this->name = $name;
     }
-
-
 }
 

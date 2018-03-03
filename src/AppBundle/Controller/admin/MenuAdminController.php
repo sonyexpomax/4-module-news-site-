@@ -6,11 +6,8 @@
  * Time: 11:36
  */
 namespace AppBundle\Controller\admin;
+
 use AppBundle\Entity\Category;
-use AppBundle\Entity\News;
-use AppBundle\Form\NewsFormType;
-use AppBundle\Pagination\Pagination;
-use AppBundle\Repository\CategoryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,35 +20,15 @@ use Symfony\Component\HttpFoundation\Request;
 class MenuAdminController extends Controller
 {
     /**
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/menu", name="admin_menu")
      */
     public function indexAction()
     {
 
         $repository = $this->getDoctrine()->getRepository(Category::class);
-//
+
         $categories = $repository->findAllOrderByNameAndByParent();
-////dump($categories);die;
-//        $category_list = [];
-//        foreach ($categories as $val){
-//            $category_list[$val->getId()] = $val->getName();
-//        }
-
-
-//dump($categories);
-//        die;
-//        foreach ($categories as $key => $val){
-//            if($val->getParentId()){
-//                $child_categories[] = $val;
-//            }
-//            else{
-//                $parent_categories[] = $val;
-//            }
-//        }
-//
-//        dump($child_categories);
-//        dump($parent_categories);
-
 
         return $this->render('admin/menu/menu.html.twig', array(
             'categories' =>  $categories,
@@ -59,17 +36,23 @@ class MenuAdminController extends Controller
     }
 
     /**
+     * @return JsonResponse
      * @Route("/get_menu", name="get_menu")
-
      */
     public function getAllAction()
     {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            throw $this->createNotFoundException('You must be an administrator' );
+        }
+
         $repository = $this->getDoctrine()->getRepository(Category::class);
         $categories = $repository->findAllOrderByNameAndByParent();
         return new JsonResponse($categories);
     }
 
     /**
+     * @param Request $request
+     * @return JsonResponse
      * @Route("/menu/update_parent", name="update_parent")
      * @Method("POST")
      */
@@ -103,6 +86,8 @@ class MenuAdminController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return JsonResponse
      * @Route("/menu/delete_child", name="delete_child")
      * @Method("POST")
      */

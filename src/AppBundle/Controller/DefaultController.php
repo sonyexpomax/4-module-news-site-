@@ -2,19 +2,18 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Ad;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\News;
 use AppBundle\Entity\Tag;
-use AppBundle\Repository\NewsRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends BaseController
 {
     /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)

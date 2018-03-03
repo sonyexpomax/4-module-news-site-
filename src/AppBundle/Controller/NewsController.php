@@ -8,29 +8,27 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Ad;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\News;
 use AppBundle\Entity\Tag;
-use AppBundle\Entity\User;
 use AppBundle\Pagination\Pagination;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class NewsController extends BaseController
 {
     /**
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/news/{id}", name="news_view")
      */
     public function indexAction(Request $request, $id)
     {
         $repository = $this->getDoctrine()->getRepository(News::class);
         $news = $repository->findOneWithImages($id);
-//dump($news);die;
         if (!$news) {
             throw $this->createNotFoundException(
                 'No news found for id = '.$id
@@ -46,6 +44,9 @@ class NewsController extends BaseController
     }
 
     /**
+     * @param $id
+     * @param $plus
+     * @return JsonResponse
      * @Route("/update_total_read/{id}/{plus}", name="update_total_read")
      * @Method("GET")
      */
@@ -66,11 +67,14 @@ class NewsController extends BaseController
 
         $em->flush();
 
-
         return new JsonResponse('');
     }
 
     /**
+     * @param $category_id
+     * @param $page_number
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/category/{category_id}/{page_number}", requirements={"page"="\d+"}, defaults={"page_number"=1}, name="news_list")
      */
     public function listAction($category_id, $page_number, Request $request)
@@ -114,6 +118,9 @@ class NewsController extends BaseController
     }
 
     /**
+     * @param $page_number
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/search_news/{page_number}", requirements={"page"="\d+"}, defaults={"page_number"=1}, name="search_news")
      */
     public function listSearchAction($page_number, Request $request)
@@ -131,13 +138,10 @@ class NewsController extends BaseController
 
         $item_per_page = $this->container->getParameter('news_per_page');
 
-
         //get news
         $repository = $this->getDoctrine()->getRepository(News::class);
 
         $total_count = $repository->findTotalNewsByCustomSearch($date_range, $category_list, $tag_list);
-
-
         $paginator = new Pagination($page_number, $total_count, $item_per_page);
         $current_page = $paginator->getCurrentPage();
         $total_pages = $paginator->getTotalPages();
@@ -150,10 +154,11 @@ class NewsController extends BaseController
                 'current_page' => $current_page,
                 'total_pages' => $total_pages,
             ));
-
     }
 
     /**
+     * @param $page_number
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/analytics/{page_number}", requirements={"page"="\d+"}, defaults={"page_number"=1}, name="analytics_list")
      */
     public function listAnalyticsAction($page_number)
@@ -188,6 +193,10 @@ class NewsController extends BaseController
     }
 
     /**
+     * @param $tag_id
+     * @param $page_number
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/tag/{tag_id}/{page_number}", requirements={"page"="\d+"}, defaults={"page_number"=1}, name="news_list_by_tag")
      */
     public function tagListAction($tag_id, $page_number, Request $request)
@@ -232,10 +241,11 @@ class NewsController extends BaseController
                 'total_pages' => $total_pages,
                 'category_id' => $tag_id,
             ));
-
     }
 
     /**
+     * @param News $news
+     * @return JsonResponse
      * @Route("/news/{id}/comments", name="news_comments")
      * @Method("GET")
      */

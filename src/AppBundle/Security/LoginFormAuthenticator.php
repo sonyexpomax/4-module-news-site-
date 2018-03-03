@@ -15,6 +15,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 
+/**
+ * Class LoginFormAuthenticator
+ * @package AppBundle\Security
+ */
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {
     private $formFactory;
@@ -30,6 +34,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         $this->passwordEncoder = $passwordEncoder;
     }
 
+    /**
+     * @param Request $request
+     * @return mixed|void
+     */
     public function getCredentials(Request $request)
     {
         $isLoginSubmit = $request->getPathInfo() == '/login' && $request->isMethod('POST');
@@ -50,6 +58,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         return $data;
     }
 
+    /**
+     * @param mixed $credentials
+     * @param UserProviderInterface $userProvider
+     * @return \AppBundle\Entity\User|null|object
+     */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $username = $credentials['_username'];
@@ -58,6 +71,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             ->findOneBy(['email' => $username]);
     }
 
+    /**
+     * @param mixed $credentials
+     * @param UserInterface $user
+     * @return bool
+     */
     public function checkCredentials($credentials, UserInterface $user)
     {
         $password = $credentials['_password'];
@@ -69,11 +87,17 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         return false;
     }
 
+    /**
+     * @return string
+     */
     protected function getLoginUrl()
     {
         return $this->router->generate('security_login');
     }
 
+    /**
+     * @return string
+     */
     protected function getDefaultSuccessRedirectUrl()
     {
         return $this->router->generate('homepage');

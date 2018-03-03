@@ -6,11 +6,8 @@
  * Time: 11:36
  */
 namespace AppBundle\Controller\admin;
-use AppBundle\Entity\News;
-use AppBundle\Form\NewsFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/admin")
@@ -18,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultAdminController extends Controller
 {
     /**
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/", name="homepage_admin")
      */
     public function indexAction()

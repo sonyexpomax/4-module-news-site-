@@ -8,10 +8,13 @@
 
 namespace AppBundle\Services;
 
-
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\Container;
 
+/**
+ * Class Menu
+ * @package AppBundle\Services
+ */
 class Menu
 {
     protected $em;

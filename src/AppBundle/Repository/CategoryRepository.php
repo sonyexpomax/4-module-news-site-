@@ -31,6 +31,9 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
+    /**
+     * @return array
+     */
     public function findAllOrderByNameAndByParent(){
 
         $res = $this->createQueryBuilder('category')
@@ -55,6 +58,9 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
         return $res2;
     }
 
+    /**
+     * @return array
+     */
     public function findAllWithoutChild()
     {
 

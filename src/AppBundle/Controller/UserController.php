@@ -1,16 +1,16 @@
 <?php
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\UserRegistrationForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends BaseController
 {
     /**
+     * @param Request $request
+     * @return null|\Symfony\Component\HttpFoundation\Response
      * @Route("/register", name="user_register")
      */
     public function registerAction(Request $request)
@@ -21,10 +21,8 @@ class UserController extends BaseController
         if ($form->isValid()) {
             /** @var User $user */
             $user = $form->getData();
-            $user->setName('ooooooooo');
             $user->setRoles(['ROLE_USER']);
 
-           // dump($user);die;
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();

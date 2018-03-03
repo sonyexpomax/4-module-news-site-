@@ -7,6 +7,11 @@
  */
 
 namespace  AppBundle\Pagination;
+
+/**
+ * Class Pagination
+ * @package AppBundle\Pagination
+ */
 class Pagination
 {
     private $totalPages;

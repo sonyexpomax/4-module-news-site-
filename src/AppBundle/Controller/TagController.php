@@ -8,16 +8,15 @@
 
 namespace AppBundle\Controller;
 
-
-use AppBundle\Entity\News;
 use AppBundle\Entity\Tag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class TagController extends BaseController
 {
     /**
+     * @param $key
+     * @return JsonResponse
      * @Route("/search/{key}", name="live_search")
      */
     public function liveSearchAction($key)
