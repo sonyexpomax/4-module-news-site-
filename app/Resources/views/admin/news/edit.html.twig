@@ -1,7 +1,9 @@
 {% extends 'admin/news/formLayout.html.twig' %}
 {% block title %}Редактирование новости{% endblock %}
 {% block body %}
-                <h1>Редактирование новости</h1>
+
+    <h1>Редактирование новости</h1>
+
     {{ form_start(newsForm) }}
     {{ form_row(newsForm.name) }}
     {{ form_row(newsForm.createdAt) }}
@@ -15,14 +17,10 @@
         {% endfor %}
     </div>
 
-
-
-
     {{ form_row(newsForm.category) }}
     {{ form_row(newsForm.tag) }}
     <button type="submit" class="btn btn-primary" formnovalidate>Сохранить</button>
     {{ form_end(newsForm) }}
-
 
 {% endblock %}
 

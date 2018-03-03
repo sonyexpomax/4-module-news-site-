@@ -80,12 +80,10 @@
  {% block javascripts %}
      {{ parent() }}
      <script src="{{ asset('js/comments.js') }}"></script>
-     <script>
-         requestComments('/news/{{ news.news_id }}/comments');
-     </script>
      <script src="{{ asset('js/reading.js') }}"></script>
      <script>
-         function updateTotalRead(plus) {
+         commenting.requestComments('/news/{{ news.news_id }}/comments');
+         reading.updateTotalRead = function(plus) {
              $.ajax({
                  type: "GET",
                  url: '/update_total_read/{{ news.news_id }}/'+plus,
@@ -94,14 +92,14 @@
                          .removeClass('fa-spinner')
                          .removeClass('fa-spin')
                          .addClass('fa-book')
-                         .text(currentTotalRead);
+                         .text(reading.currentTotalRead);
                  }
              });
-         }
+         };
 
-         generateReadingNow();
+         reading.generateReadingNow();
          setTimeout(
-            setInterval(generateReadingNow, 4000),
+            setInterval(reading.generateReadingNow, 4000),
             3000
          );
 

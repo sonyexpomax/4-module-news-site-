@@ -1,20 +1,18 @@
 {% extends "baseWithAd.html.twig" %}
 
 {% block body %}
-        <h2>Комментарии пользователя "{{ user_name }}"</h2>
-        <ul class="list-group">
-            {% for comment in comments %}
-                <a class="list-group-item" href="{{ path('news_view', {'id': comment.news_id}) }}">
-                    <div class="bmd-list-group-col">
-                        <b><p class="list-group-item-heading">{{ comment.news_name }}</p></b>
-                       <b>Комментарий( {{ comment.createdAt |date }} ): </b><p class="list-group-item-heading">{{ comment.comment_text }}</p>
-                        <p class="list-group-item-text">Читать новость</p>
-                    </div>
-                </a>
-
-
-            {% endfor %}
-        </ul>
+    <h2>Комментарии пользователя "{{ user_name }}"</h2>
+    <ul class="list-group">
+        {% for comment in comments %}
+            <a class="list-group-item" href="{{ path('news_view', {'id': comment.news_id}) }}">
+                <div class="bmd-list-group-col">
+                    <b><p class="list-group-item-heading">{{ comment.news_name }}</p></b>
+                    <b>Комментарий( {{ comment.createdAt |date }} ): </b><p class="list-group-item-heading">{{ comment.comment_text }}</p>
+                    <p class="list-group-item-text">Читать новость</p>
+                </div>
+            </a>
+        {% endfor %}
+    </ul>
 
     <nav aria-label="Page navigation example" class="center-div">
         <ul class="pagination">

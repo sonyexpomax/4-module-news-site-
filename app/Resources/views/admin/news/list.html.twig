@@ -5,31 +5,31 @@
 {% endblock %}
 {%  block title %}Список новостей{% endblock %}
 {% block body %}
-                <div class="float-right" style="margin-bottom: 10px; margin-top: 20px;">
-                    <a href="{{ path('admin_news_new') }}" class="btn btn-md btn-primary pull-right">Добавить новость</a>
-                </div>
+    <div class="float-right" style="margin-bottom: 10px; margin-top: 20px;">
+        <a href="{{ path('admin_news_new') }}" class="btn btn-md btn-primary pull-right">Добавить новость</a>
+    </div>
 
-                <h1 class="float-left">Список новостей</h1>
+    <h1 class="float-left">Список новостей</h1>
 
-                <table class="table table-striped">
-                    <tr>
-                        <th>Code</th>
-                        <th>Название</th>
-                        <th>Дата</th>
-                        <th>Действие</th>
-                    </tr>
-                    {% for news in newss %}
-                        <tr>
-                            <td>{{ loop.index + 30*(current_page -1)}}.</td>
-                            <td>{{ news.name }}</td>
-                            <td>{{ news.createdAt |date  }}</td>
-                            <td>
-                                <a href="{{ path('admin_news_edit', {'id': news.id}) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-                                <a href="{{ path('admin_news_delete', {'id': news.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </table>
+    <table class="table table-striped">
+        <tr>
+            <th>Code</th>
+            <th>Название</th>
+            <th>Дата</th>
+            <th>Действие</th>
+        </tr>
+        {% for news in newss %}
+            <tr>
+                <td>{{ loop.index + 30*(current_page -1)}}.</td>
+                <td>{{ news.name }}</td>
+                <td>{{ news.createdAt |date  }}</td>
+                <td>
+                    <a href="{{ path('admin_news_edit', {'id': news.id}) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+                    <a href="{{ path('admin_news_delete', {'id': news.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 
     <nav aria-label="Page navigation example" class="center-div">
         <ul class="pagination">
@@ -43,7 +43,6 @@
                     <a class="page-link" href="{{ path('admin_news_list',{'page_number':'page='~(current_page-1)})}}"><<</a>
                 </li>
             {% endif %}
-
 
             {% for i in range(1,  current_page ) %}
                 {% if  i == current_page %}

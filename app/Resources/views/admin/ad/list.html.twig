@@ -6,29 +6,29 @@
 {% endblock %}
 {%  block title %}Список рекламных блоков{% endblock %}
 {% block body %}
-                <div class="float-right" style="margin-bottom: 10px; margin-top: 20px;">
-                    <a href="{{ path('admin_ad_new') }}" class="btn btn-md btn-primary pull-right">Добавить блок</a>
-                </div>
-                <h1 class="float-left">Список рекламных блоков</h1>
-                <table class="table table-striped">
-                    <tr>
-                        <th>№</th>
-                        <th>Название</th>
-                        <th>Цена</th>
-                        <th>Действие</th>
-                    </tr>
-                    {% for ad in ads %}
-                        <tr>
-                            <td>{{ loop.index  }}</td>
-                            <td>{{ ad.name }}</td>
-                            <td>{{ ad.price|number_format(2, '.', ' ') }} грн.</td>
-                            <td>
-                                <a href="{{ path('admin_ad_edit', {'id': ad.id}) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-                                <a href="{{ path('admin_ad_delete', {'id': ad.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </table>
+    <div class="float-right" style="margin-bottom: 10px; margin-top: 20px;">
+        <a href="{{ path('admin_ad_new') }}" class="btn btn-md btn-primary pull-right">Добавить блок</a>
+    </div>
+    <h1 class="float-left">Список рекламных блоков</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>№</th>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Действие</th>
+        </tr>
+        {% for ad in ads %}
+            <tr>
+                <td>{{ loop.index  }}</td>
+                <td>{{ ad.name }}</td>
+                <td>{{ ad.price|number_format(2, '.', ' ') }} грн.</td>
+                <td>
+                    <a href="{{ path('admin_ad_edit', {'id': ad.id}) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+                    <a href="{{ path('admin_ad_delete', {'id': ad.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
 
 
@@ -37,7 +37,6 @@
     {{ parent() }}
 <script>
     $(document).ready(function() {
-        // you may need to change this code if you are not using Bootstrap Datepicker
         $('.js-datepicker').datepicker({
             format: 'yyyy-mm-dd h:i'
         });

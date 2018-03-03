@@ -1,21 +1,17 @@
 {% extends "baseWithAd.html.twig" %}
 {%  block title %}Аналитика{% endblock %}
 {% block body %}
-
-        <h2>Аналитика</h2>
-        <ul class="list-group">
-            {% for item in news %}
-                <a class="list-group-item" href="{{ path('news_view', {'id': item.news_id}) }}">
-                    <div class="bmd-list-group-col">
-                        <p class="list-group-item-heading">{{ item.news_name }}</p>
-                        <p class="list-group-item-text">Подробнее</p>
-                    </div>
-                </a>
-
-
-            {% endfor %}
-        </ul>
-
+    <h2>Аналитика</h2>
+    <ul class="list-group">
+        {% for item in news %}
+            <a class="list-group-item" href="{{ path('news_view', {'id': item.news_id}) }}">
+                <div class="bmd-list-group-col">
+                    <p class="list-group-item-heading">{{ item.news_name }}</p>
+                    <p class="list-group-item-text">Подробнее</p>
+                </div>
+            </a>
+        {% endfor %}
+    </ul>
 
     <nav aria-label="Page navigation example" class="center-div">
         <ul class="pagination">
